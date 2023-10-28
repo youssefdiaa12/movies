@@ -117,7 +117,10 @@ class homeTap extends StatelessWidget {
                       height: 150,
                       child: ListView.builder(
                         itemBuilder: (context, index) {
-                          return movieWidget();
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 10.0),
+                            child: movieWidget(),
+                          );
                         },
                         itemCount: 10,
                         scrollDirection: Axis.horizontal,
