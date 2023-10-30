@@ -32,9 +32,9 @@ class _searchTapState extends State<searchTap> {
                   setState(() {
                     response;
                   });
-                },
+                  },
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-
                   fillColor: const Color(0xff514F4F),
                   filled: true,
                   prefixIcon: const Icon(
