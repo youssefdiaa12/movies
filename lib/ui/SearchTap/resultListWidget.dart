@@ -23,7 +23,6 @@ class _resultListWidgetState extends State<resultListWidget> {
         switch (state) {
           case LoadingState():
             {
-              print('kare');
               // implicit casting
               return const Center(
                 child: CircularProgressIndicator(),
@@ -31,7 +30,6 @@ class _resultListWidgetState extends State<resultListWidget> {
             }
           case ErrorState():
             {
-              print('karem');
               return Center(
                 child: ElevatedButton(
                   child: Text(
@@ -46,12 +44,10 @@ class _resultListWidgetState extends State<resultListWidget> {
             }
           case SuccessState():
             {
-              print('dodo');
               return
                 ListView.builder(
                 itemCount: state.results.length ?? 0,
                 itemBuilder: (context, index) {
-                  print('rana');
                   return movieWidget(state.results[index]);
                 },
               );
