@@ -54,9 +54,9 @@ class movieWidget extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Text(movies.releaseDate?.substring(0,4)?? '',style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.67)),),
-
-                ],
+                  Text(movies.releaseDate?.length==0?'':movies.releaseDate?.substring(0, 4) ?? '',
+                    style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.67)),
+                  ),                ],
               ),
             ),
           ),
@@ -65,43 +65,3 @@ class movieWidget extends StatelessWidget {
     );
   }
 }
-// ClipRect(
-// child:InkWell(
-// onTap: () {
-//
-// },
-// child:
-// CachedNetworkImage(
-// imageUrl:  news.overview??'',
-// height: 41,
-// width:90,
-// fit: BoxFit.fill,
-// progressIndicatorBuilder: (context, url, downloadProgress) =>
-// Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
-// errorWidget: (context, url, error) => const Icon(Icons.error),
-// ),
-// ),
-// ),
-// Text(
-// news.title??'',
-// textAlign: TextAlign.start,
-// style: const TextStyle(
-// color: Color(0xff79828B),
-// fontSize: 18,
-// fontWeight: FontWeight.w400),
-// ),
-// Text(
-// news.title??'',
-// textAlign: TextAlign.start,
-// style: const TextStyle(
-// color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
-// ),
-// Text(
-// news.overview??'',
-//
-// textAlign: TextAlign.end,
-// style: const TextStyle(
-// color: Color(0xffA3A3A3),
-// fontSize: 16,
-// fontWeight: FontWeight.w800),
-// ),

@@ -8,10 +8,7 @@ class searchViewModel extends Cubit<movieSearchState> {
   void getMovieData(String search) async {
     emit(LoadingState());
     try {
-      print("search");
       var response = await apiManager.get(search);
-      print('rana1');
-      print(response.results);
         emit(SuccessState(response.results??[]));
       }
     catch (e) {
