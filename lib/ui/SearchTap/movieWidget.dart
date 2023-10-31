@@ -71,7 +71,7 @@ class movieWidget extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top:16,left:8.0, right:8.0),
+            padding: const EdgeInsets.only(top:14,left:10.0, right:10.0),
             child: Container(
               height: 1,
               width: double.infinity,
