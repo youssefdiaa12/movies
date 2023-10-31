@@ -5,8 +5,9 @@ import 'package:movies/ui/SearchTap/searchModel.dart';
 
 class resultListWidget extends StatefulWidget {
   String search;
+  String? primary_release_year;
 
-  resultListWidget(this.search, {super.key,  primary_release_year});
+  resultListWidget(this.search, {super.key, this.primary_release_year});
 
   @override
   State<resultListWidget> createState() => _resultListWidgetState();
@@ -17,7 +18,7 @@ class _resultListWidgetState extends State<resultListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    model.getMovieData(widget.search);
+    model.getMovieData(widget.search, primary_release_year: widget.primary_release_year);
     return BlocBuilder<searchViewModel, movieSearchState>(
       builder: (context, state) {
         switch (state) {

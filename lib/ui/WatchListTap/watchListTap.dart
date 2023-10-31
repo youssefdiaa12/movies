@@ -48,7 +48,7 @@ class watchListTap extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.8, // Adjust this value as needed
                   child: ListView.builder(
                     itemBuilder: (context, index) {
-                      return resultListWidget(taskList[0].id,
+                      return resultListWidget(taskList[index].id,
                           primary_release_year:
                           taskList[index].primary_release_year);
                     },
