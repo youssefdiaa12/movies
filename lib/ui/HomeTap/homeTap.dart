@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/ui/HomeTap/movieCard.dart';
-import 'package:movies/ui/HomeTap/movieWidget.dart';
+import 'package:movies/ui/HomeTap/RecommendedListWidget.dart';
+import 'package:movies/ui/HomeTap/newListWidget.dart';
 
 class homeTap extends StatelessWidget {
   const homeTap({Key? key}) : super(key: key);
@@ -10,8 +10,7 @@ class homeTap extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Stack(
             alignment: Alignment.bottomLeft,
             children: [
@@ -26,14 +25,11 @@ class homeTap extends StatelessWidget {
                         Container(
                             height: 200,
                             width: double.infinity,
-
                             decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                  fit: BoxFit.fill,
+                              fit: BoxFit.fill,
                               image: AssetImage("assets/oo.png"),
-                            )
-                            )
-                        ),
+                            ))),
                         const Center(
                           child: AnimatedCrossFade(
                             crossFadeState: CrossFadeState.showFirst,
@@ -115,16 +111,9 @@ class homeTap extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 150,
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 10.0),
-                            child: movieWidget(),
-                          );
-                        },
-                        itemCount: 10,
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true, // Add this line
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: newListWidget(),
                       ),
                     ),
                   ],
@@ -148,17 +137,7 @@ class homeTap extends StatelessWidget {
                             fontWeight: FontWeight.w400),
                       ),
                     ),
-                    SizedBox(
-                      height: 220,
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          return movieCard();
-                        },
-                        itemCount: 10,
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true, // Add this line
-                      ),
-                    ),
+                    SizedBox(height: 220, child: RecommendedListWidget()),
                     SizedBox(
                       height: 20,
                     )
