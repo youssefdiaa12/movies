@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/HomeScreen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -21,7 +22,6 @@ class MyApp extends StatelessWidget {
           selectedIconTheme: IconThemeData(size: 32),
           selectedItemColor: Color(0xffFFB224),
         ),
-
         primaryColor: Color(0xff1A1A1A),
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.black,
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: HomeScreen.routeName,
       routes: {
-        HomeScreen.routeName: (context) =>  HomeScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
       },
     );
   }
