@@ -1,9 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:movies/HomeScreen.dart';
+import 'package:movies/Provider/provider.dart';
+import 'package:movies/firebase_options.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  var Provider = provider();
+  await Provider.login();
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (buildContext) => Provider),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
