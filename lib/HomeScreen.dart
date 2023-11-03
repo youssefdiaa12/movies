@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies/ui/BrowseTap/browseTap.dart';
+import 'package:movies/ui/BrowseTap/browseTab.dart';
 import 'package:movies/ui/HomeTap/homeTap.dart';
 import 'package:movies/ui/SearchTap/searchTap.dart';
 import 'package:movies/ui/WatchListTap/watchListTap.dart';
@@ -54,7 +54,7 @@ backgroundColor: Colors.transparent,
     );
   }
 
-  var tabs = [homeTap(),searchTap(),browseTap(),watchListTap()];
+  var tabs = [homeTap(),searchTap(),browseTab(),watchListTap()];
 
   int selectedTabIndex = 0;
 }

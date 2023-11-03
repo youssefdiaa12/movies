@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+import 'package:movies/ApiManager/apiManager.dart';
+import 'package:movies/BrowseResponse/CategoryResponse.dart';
+import 'package:movies/ui/BrowseTap/CategoryFragment.dart';
+
+import 'Category.dart';
+
+class browseTab extends StatelessWidget {
+  browseTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var categories = Category.getAllCategories();
+    return Scaffold(
+      body: FutureBuilder<CategoryResponse>(
+        future: apiManager.getCategory(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var categoryResponse = snapshot.data!;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 30),
+                  child: Text('Browse Category',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.2,
+                    ),
+                    itemBuilder: (context, index) {
+                      var genres = categoryResponse.genres![index];
+                      return CategoryFragment(genres, categories[index]);
+                    },
+                    itemCount: categoryResponse.genres?.length,
+                  ),
+                )
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Text('Error loading category.');
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
+    );
+  }
+}

@@ -5,7 +5,6 @@
 import FlutterMacOS
 import Foundation
 
-
 import cloud_firestore
 import firebase_core
 import path_provider_foundation
