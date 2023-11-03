@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/SearchResponse/Results.dart';
@@ -49,7 +51,7 @@ class movieWidget extends StatelessWidget {
                     children: [
                       SizedBox(height: 8),
                       Text(
-                        movies.title ?? '',
+                        movies.title?.substring(0,min(20,movies.title!.length)) ?? '',
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                           color: Colors.white,
