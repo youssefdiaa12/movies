@@ -11,7 +11,6 @@ class movieWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('dada');
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
@@ -21,7 +20,8 @@ class movieWidget extends StatelessWidget {
               Container(
                 color: Colors.white,
                 child: Center(
-                  child: CachedNetworkImage(
+                  child:
+                  CachedNetworkImage(
                     height: 89,
                     width: 140,
                     imageUrl:
