@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movies/BrowseResponse/CategoryResponse.dart';
+import 'package:movies/MoviesResponse/MovieCategory.dart';
 import 'package:movies/SearchResponse/SearchResponse.dart';
 import 'package:movies/model/newReleasesResponse/NewReleasesResponse.dart';
 import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
@@ -63,6 +64,22 @@ class apiManager {
     var categoryResponse = CategoryResponse.fromJson(json);
     return categoryResponse;
   }
+
+ 
+  static Future<MovieCategory> getMovies(String genres) async {
+    var url = Uri.https('api.themoviedb.org', '/3/discover/movie', {
+      'api_key': '91d26df9fb64973d39a9e876ce58da73',
+      'with_genres': genres
+    });
+
+    var response = await http.get(url);
+    var json = jsonDecode(response.body);
+    var movieCategory = MovieCategory.fromJson(json);
+    return movieCategory;
+  }
+
+
+}
 
   static Future<PopularResponse> getPopular() async {
     var url = Uri.https('api.themoviedb.org', '/3/movie/popular', {
