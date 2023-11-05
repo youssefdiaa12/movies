@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/HomeScreen.dart';
+import 'package:movies/ui/Movies/MoviesListWidget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) =>  HomeScreen(),
+        MoviesListWidget.routeName: (context) =>  MoviesListWidget(),
+
       },
     );
   }

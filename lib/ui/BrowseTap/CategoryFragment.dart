@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/BrowseResponse/Genres.dart';
+import 'package:movies/ui/Movies/MoviesListWidget.dart';
 import 'Category.dart';
 class CategoryFragment extends StatelessWidget{
   Genres genres;
@@ -10,10 +11,17 @@ class CategoryFragment extends StatelessWidget{
     return Stack(
         alignment: Alignment.center,
         children:[
-          Image.asset('assets/${category.imageName}',
-            width: 180,
-            height: 110,
-            fit: BoxFit.cover,),
+          InkWell(
+            onTap: (){
+              Navigator.of(context)
+                  .pushNamed(MoviesListWidget.routeName,
+                  arguments:MoviesListWidget(genres: genres.id,) );
+            },
+            child: Image.asset('assets/${category.imageName}',
+              width: 180,
+              height: 110,
+              fit: BoxFit.cover,),
+          ),
           Text(genres.name??"",
             style: TextStyle(
               color:Colors.white ,
