@@ -27,8 +27,10 @@ class _searchTapState extends State<searchTap> {
 
                 },
                 controller: controller,
-                onChanged: (value)  {
+                onChanged: (value) async {
+                  response = await apiManager.get(value);
                   setState(() {
+                    response;
                   });
                   },
                 style: TextStyle(color: Colors.white),

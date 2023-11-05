@@ -1,9 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:movies/HomeScreen.dart';
 import 'package:movies/ui/Movies/MoviesListWidget.dart';
+import 'package:movies/Provider/provider.dart';
+import 'package:movies/firebase_options.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  var Provider = provider();
+  await Provider.login();
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (buildContext) => Provider),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +40,6 @@ class MyApp extends StatelessWidget {
           selectedIconTheme: IconThemeData(size: 32),
           selectedItemColor: Color(0xffFFB224),
         ),
-
         primaryColor: Color(0xff1A1A1A),
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.black,
@@ -35,6 +52,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.routeName: (context) =>  HomeScreen(),
         MoviesListWidget.routeName: (context) =>  MoviesListWidget(),
 
+        HomeScreen.routeName: (context) => HomeScreen(),
       },
     );
   }
