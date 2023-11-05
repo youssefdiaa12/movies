@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movies/ApiManager/apiManager.dart';
 import 'package:movies/BrowseResponse/CategoryResponse.dart';
+import 'package:movies/ui/BrowseTap/Category.dart';
 import 'package:movies/ui/BrowseTap/CategoryFragment.dart';
 
-import 'Category.dart';
 
 class browseTab extends StatelessWidget {
   browseTab({Key? key}) : super(key: key);
@@ -21,25 +21,31 @@ class browseTab extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 30),
-                  child: Text('Browse Category',
+                  padding: const EdgeInsets.only(top: 30,left: 20),
+                  child: Text(
+                    'Browse Category',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                    ),),
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.2,
+                      ),
+                      itemBuilder: (context, index) {
+                        var genres = categoryResponse.genres![index];
+                        return CategoryFragment(genres, categories[index] );
+                      },
+                      itemCount: categoryResponse.genres?.length,
                     ),
-                    itemBuilder: (context, index) {
-                      var genres = categoryResponse.genres![index];
-                      return CategoryFragment(genres, categories[index]);
-                    },
-                    itemCount: categoryResponse.genres?.length,
                   ),
                 )
               ],

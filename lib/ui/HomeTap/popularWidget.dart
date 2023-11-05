@@ -28,22 +28,7 @@ class popularWidget extends StatelessWidget {
                       children: [
                         CachedNetworkImage(
                             imageUrl: "https://image.tmdb.org/t/p/original/${movies.backdropPath}"  ?? ''),
-                        const Center(
-                          child: AnimatedCrossFade(
-                            crossFadeState: CrossFadeState.showFirst,
-                            duration: Duration(seconds: 1),
-                            firstChild: Icon(
-                              Icons.play_circle_outline,
-                              size: 50,
-                              color: Colors.white,
-                            ),
-                            secondChild: Icon(
-                              Icons.pause_circle_outline,
-                              size: 50,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+
                       ],
                     ),
                   ),
@@ -69,32 +54,7 @@ class popularWidget extends StatelessWidget {
 
                 ],
               ),
-              Stack(
-                alignment: Alignment.topLeft,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0,left: 10.0),
-                    child: Card(
-                      elevation: 60,
-                      child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          height: 200,
-                          width: 129,
-                          imageUrl: "https://image.tmdb.org/t/p/original/${movies.backdropPath}"  ?? ''),
-                    ),
-                  ),
 
-                  IconButton(
-                    alignment: Alignment.topLeft,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.bookmark_add_rounded,
-                      color: Colors.white,
-                      size: 32,
-                    ),
-                  ),
-                ],
-              ),
             ],
           ),
         ],
