@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/ApiManager/apiManager.dart';
 import 'package:movies/DataBase/MoiveDao.dart';
 import 'package:movies/HomeScreen.dart';
 import 'package:movies/ui/SearchTap/resultListWidget.dart';
@@ -11,8 +12,8 @@ class watchListTap extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
-        child: FutureBuilder(
-          future: MovieDao.getTasks(),
+        child: StreamBuilder(
+          stream: MovieDao.listForTasks(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -23,7 +24,7 @@ class watchListTap extends StatelessWidget {
                 child: ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue)),
+                          MaterialStateProperty.all<Color>(Colors.blue)),
                   onPressed: () {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => HomeScreen()));
@@ -43,14 +44,14 @@ class watchListTap extends StatelessWidget {
                   ),
                 );
               } else {
-                print(taskList.length);
-                return Container( // Add a Container to specify the size of the ListView
+                return Container(
+
+                  // Add a Container to specify the size of the ListView
                   height: MediaQuery.of(context).size.height * 0.8, // Adjust this value as needed
                   child: ListView.builder(
                     itemBuilder: (context, index) {
-                      return resultListWidget(taskList[index].id,
-                          primary_release_year:
-                          taskList[index].primary_release_year);
+                      return resultListWidget(taskList[index].name,
+                          id: taskList[index].id);
                     },
                     itemCount: taskList.length,
                   ),

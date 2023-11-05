@@ -38,7 +38,7 @@ class MovieCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: 137,
-                          child: RecommendedMovieWidget(movie),
+                          child: RecommendedMovieWidget(recommendedMovie: movie),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 11.0),

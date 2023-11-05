@@ -60,6 +60,8 @@ class Results {
   bool? video;
   double? voteAverage;
   int? voteCount;
+
+  get name => null;
 Results copyWith({  bool? adult,
   String? backdropPath,
   List<int>? genreIds,

@@ -23,7 +23,7 @@ class CategoryFragment extends StatelessWidget{
               fit: BoxFit.cover,),
           ),
           Text(genres.name??"",
-            style: TextStyle(
+            style: const TextStyle(
               color:Colors.white ,
               fontWeight: FontWeight.bold,
               fontSize: 24,),
