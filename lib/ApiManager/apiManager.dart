@@ -20,19 +20,14 @@ class apiManager {
       'include_adult': 'false',
       'language': 'en-US',
       'page': '1',
-      'id':id,
+      'id': id,
     });
-    print(url);
-
 
     var response = await http.get(url);
     var json = jsonDecode(response.body);
     var searchResponse = SearchResponse.fromJson(json);
     return searchResponse;
   }
-
-
-
 
   static Future<NewReleasesResponse> getNewReleases() async {
     var url = Uri.https(baseUrl, '/3/movie/upcoming', {
@@ -69,7 +64,7 @@ class apiManager {
     return categoryResponse;
   }
 
- 
+
   static Future<MovieCategory> getMovies(String genres) async {
     var url = Uri.https('api.themoviedb.org', '/3/discover/movie', {
       'api_key': '91d26df9fb64973d39a9e876ce58da73',
@@ -83,8 +78,6 @@ class apiManager {
   }
 
 
-
-
   static Future<PopularResponse> getPopular() async {
     var url = Uri.https('api.themoviedb.org', '/3/movie/popular', {
       'api_key': '6bb49ce0a86b250dcf0f631501a06dc5',
@@ -94,4 +87,5 @@ class apiManager {
     var popularResponse = PopularResponse.fromJson(json);
     return popularResponse;
   }
+
 }
