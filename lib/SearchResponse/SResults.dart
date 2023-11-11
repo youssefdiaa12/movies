@@ -13,8 +13,8 @@
 /// vote_average : 7.935
 /// vote_count : 23
 
-class Results {
-  Results({
+class SResults {
+  SResults({
       this.adult, 
       this.backdropPath, 
       this.genreIds, 
@@ -30,7 +30,7 @@ class Results {
       this.voteAverage, 
       this.voteCount,});
 
-  Results.fromJson(dynamic json) {
+  SResults.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
@@ -60,7 +60,7 @@ class Results {
   bool? video;
   double? voteAverage;
   int? voteCount;
-Results copyWith({  bool? adult,
+SResults copyWith({  bool? adult,
   String? backdropPath,
   List<int>? genreIds,
   int? id,
@@ -74,7 +74,7 @@ Results copyWith({  bool? adult,
   bool? video,
   double? voteAverage,
   int? voteCount,
-}) => Results(  adult: adult ?? this.adult,
+}) => SResults(  adult: adult ?? this.adult,
   backdropPath: backdropPath ?? this.backdropPath,
   genreIds: genreIds ?? this.genreIds,
   id: id ?? this.id,

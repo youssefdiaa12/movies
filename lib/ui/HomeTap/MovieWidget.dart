@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import '../../model/newReleasesResponse/NewResult.dart';
+import 'package:movies/SearchResponse/SResults.dart';
+import '../MovieDetailsScreen/MoreLikeListWidget.dart';
+import '../MovieDetailsScreen/MovieDetails.dart';
 
 class MovieWidget extends StatelessWidget {
-  List<NewResult>? newMovies;
+
+  List<SResults>? newMovies;
 
   MovieWidget(this.newMovies);
 
@@ -25,7 +27,8 @@ class MovieWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 12.0, top: 11.0),
                 child: InkWell(
                   onTap: () {
-                    //navigate to movie details screen
+                    Navigator.pushNamed(context, MovieDetails.routeName , arguments: movie);
+                    // MoreLikeListWidget.movieID = movie.id;
                   },
                   child: CachedNetworkImage(
                     height: 137,

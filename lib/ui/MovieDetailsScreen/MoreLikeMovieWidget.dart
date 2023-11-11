@@ -1,12 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/model/MoreLikeResponseList/MoreLikeListResponse.dart';
+import 'package:movies/model/MoreLikeResponseList/MoreLikeResult.dart';
 import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
 
+import '../../SearchResponse/SResults.dart';
 
-class RecommendedMovieWidget extends StatelessWidget {
-  Results recommendedMovie;
 
-  RecommendedMovieWidget(this.recommendedMovie);
+class MoreLikeMovieWidget extends StatelessWidget {
+
+  Results movie;
+  MoreLikeMovieWidget(this.movie);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class RecommendedMovieWidget extends StatelessWidget {
               height: 137,
               width: 86,
               imageUrl:
-                  "https://image.tmdb.org/t/p/w500/${recommendedMovie.backdropPath}" ??
+                  "https://image.tmdb.org/t/p/w500/${movie.backdropPath}" ??
                       '',
               imageBuilder: (context, imageProvider) => Container(
                 decoration: BoxDecoration(

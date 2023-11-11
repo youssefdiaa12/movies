@@ -1,17 +1,19 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
-import 'package:movies/ui/HomeTap/RecommendedMovieWidget.dart';
-import 'package:movies/ui/MovieDetailsScreen/MoreLikeListWidget.dart';
+import 'package:movies/ui/MovieDetailsScreen/MoreLikeMovieWidget.dart';
 import 'package:movies/ui/MovieDetailsScreen/MovieDetails.dart';
 
+import '../../SearchResponse/SResults.dart';
+import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
 
 
-class MovieCard extends StatelessWidget {
 
-  List<Results>? recommendedMovies;
-  MovieCard(this.recommendedMovies);
+
+class MoreLikeCardList extends StatelessWidget {
+
+
+  List<Results>? moviee;
+  MoreLikeCardList({this.moviee});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +22,16 @@ class MovieCard extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 4),
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: recommendedMovies?.length ?? 0,
+          itemCount: moviee?.length ?? 0,
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            Results movie = recommendedMovies![index];
+            Results movie = moviee![index];
             return Padding(
               padding: const EdgeInsets.only(left: 12.0, top: 11.0),
               child: InkWell(
                 onTap: () {
-                   Navigator.pushNamed(context, MovieDetails.routeName , arguments: movie);
-                   },
+                  Navigator.pushNamed(context, MovieDetails.routeName , arguments: movie);
+                },
                 child: Card(
                   color: Color(0xff343534),
                   surfaceTintColor: Colors.transparent,
@@ -42,7 +44,7 @@ class MovieCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: 137,
-                          child: RecommendedMovieWidget(movie),
+                          child: MoreLikeMovieWidget(movie),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 11.0),

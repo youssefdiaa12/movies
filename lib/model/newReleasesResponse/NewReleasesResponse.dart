@@ -1,5 +1,6 @@
+import 'package:movies/SearchResponse/SResults.dart';
+
 import 'Dates.dart';
-import 'NewResult.dart';
 
 /// dates : {"maximum":"2023-11-22","minimum":"2023-11-01"}
 /// page : 1
@@ -25,7 +26,7 @@ class NewReleasesResponse {
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(NewResult.fromJson(v));
+        results?.add(SResults.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -33,7 +34,7 @@ class NewReleasesResponse {
   }
   Dates? dates;
   int? page;
-  List<NewResult>? results;
+  List<SResults>? results;
   int? totalPages;
   int? totalResults;
   int? status_code;
@@ -42,7 +43,7 @@ class NewReleasesResponse {
   NewReleasesResponse copyWith({
     Dates? dates,
     int? page,
-    List<NewResult>? results,
+    List<SResults>? results,
     int? totalPages,
     int? totalResults,
   }) =>

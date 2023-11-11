@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/ApiManager/apiManager.dart';
-import 'package:movies/SearchResponse/Results.dart';
+import 'package:movies/SearchResponse/SResults.dart';
 
 class searchViewModel extends Cubit<movieSearchState> {
   searchViewModel() : super(LoadingState());
@@ -42,7 +42,7 @@ class ErrorState extends movieSearchState {
 }
 
 class SuccessState extends movieSearchState {
-  List<Results> results;
+  List<SResults> results;
 
   SuccessState(this.results);
 }

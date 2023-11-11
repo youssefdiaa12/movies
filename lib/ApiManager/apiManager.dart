@@ -4,15 +4,13 @@ import 'package:movies/BrowseResponse/CategoryResponse.dart';
 import 'package:movies/SearchResponse/SearchResponse.dart';
 import 'package:movies/model/newReleasesResponse/NewReleasesResponse.dart';
 import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
-import 'package:movies/popularResponse/Popular_Response.dart';
 
 
 class apiManager {
   static const baseUrl = 'api.themoviedb.org';
 
 
-  static Future<SearchResponse> get(String search,
-      {String? primary_release_year}) async {
+  static Future<SearchResponse> get(String search,{String? primary_release_year}) async {
     print(primary_release_year);
     var url = Uri.https('api.themoviedb.org', '/3/search/movie', {
       'api_key': '6bb49ce0a86b250dcf0f631501a06dc5',
@@ -52,8 +50,7 @@ class apiManager {
     RecommendedResult recommendedResponse = RecommendedResult.fromJson(json);
     return recommendedResponse;
   }
-
-  static Future<CategoryResponse> getCategory() async {
+ static Future<CategoryResponse> getCategory() async {
     var url = Uri.https('api.themoviedb.org', '/3/genre/movie/list', {
       'api_key': '91d26df9fb64973d39a9e876ce58da73'
     });
@@ -64,13 +61,4 @@ class apiManager {
     return categoryResponse;
   }
 
-  static Future<PopularResponse> getPopular() async {
-    var url = Uri.https('api.themoviedb.org', '/3/movie/popular', {
-      'api_key': '6bb49ce0a86b250dcf0f631501a06dc5',
-    });
-    var response = await http.get(url);
-    var json = jsonDecode(response.body);
-    var popularResponse = PopularResponse.fromJson(json);
-    return popularResponse;
-  }
 }
