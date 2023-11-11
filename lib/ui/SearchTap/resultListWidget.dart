@@ -5,20 +5,22 @@ import 'package:movies/ui/SearchTap/searchModel.dart';
 
 class resultListWidget extends StatefulWidget {
   String search;
-  String? primary_release_year;
+  String? id;
 
-  resultListWidget(this.search, {super.key, this.primary_release_year});
+  resultListWidget(this.search, {super.key, this.id});
 
   @override
   State<resultListWidget> createState() => _resultListWidgetState();
 }
 
 class _resultListWidgetState extends State<resultListWidget> {
+
+
   var model = searchViewModel();
 
   @override
   Widget build(BuildContext context) {
-    model.getMovieData(widget.search, primary_release_year: widget.primary_release_year);
+    model.getMovieData(widget.search, id: widget.id);
     return BlocBuilder<searchViewModel, movieSearchState>(
       builder: (context, state) {
         switch (state) {
@@ -35,22 +37,32 @@ class _resultListWidgetState extends State<resultListWidget> {
                 child: ElevatedButton(
                   child: Text(
                     state.errorMessage ?? 'Error',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
                   onPressed: () {
-                    model.getMovieData(widget.search);
+                    model.getMovieData(widget.search,id: widget.id);
                   },
                 ),
               );
             }
           case SuccessState():
             {
-              return Container( // Add a Container to specify the size of the ListView
+              if(state.results.length ==1){
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  child: movieWidget(state.results[0]),
+                );
+              }
+
+              return SizedBox(
+
+                // Add a Container to specify the size of the ListView
                 height: MediaQuery.of(context).size.height * 0.8, // Adjust this value as needed
-                child: ListView.builder(
-                  itemCount: state.results.length ?? 0,
+                child:
+                ListView.builder(
+                  itemCount: state.results.length,
                   itemBuilder: (context, index) {
-                    return Container(
+                    return SizedBox(
                       height: MediaQuery.of(context).size.height * 0.2,
                       child: movieWidget(state.results[index]),
                     );

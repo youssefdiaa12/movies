@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
 
-
 class RecommendedMovieWidget extends StatelessWidget {
   Results recommendedMovie;
 

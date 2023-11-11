@@ -2,18 +2,19 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/SearchResponse/Results.dart';
+import 'package:movies/MoviesResponse/Results.dart';
 
-class movieWidget extends StatelessWidget {
-  Results movies;
+class MovieWidget extends StatelessWidget {
+  Results? results;
 
-  movieWidget(this.movies);
+  MovieWidget(this.results, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
             children: [
@@ -25,8 +26,8 @@ class movieWidget extends StatelessWidget {
                     height: 89,
                     width: 140,
                     imageUrl:
-                        "https://image.tmdb.org/t/p/w500/${movies.backdropPath}" ??
-                            '',
+                    "https://image.tmdb.org/t/p/original/${results?.backdropPath}" ??
+                        '',
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -51,7 +52,7 @@ class movieWidget extends StatelessWidget {
                     children: [
                       SizedBox(height: 8),
                       Text(
-                        movies.title?.substring(0,min(20,movies.title!.length)) ?? '',
+                        results?.title?.substring(0,min(20,results!.title!.length)) ?? '',
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                           color: Colors.white,
@@ -59,12 +60,14 @@ class movieWidget extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
+                      SizedBox(height: 4,),
                       Text(
-                        movies.releaseDate?.length == 0
+                        results?.releaseDate?.length == 0
                             ? ''
-                            : movies.releaseDate?.substring(0, 4) ?? '',
+                            : results?.releaseDate?.substring(0, 4) ?? '',
                         style: TextStyle(
-                            color: Color.fromRGBO(255, 255, 255, 0.67)),
+                            color: Color.fromRGBO(255, 255, 255, 0.67),
+                        fontSize: 18),
                       ),
                     ],
                   ),

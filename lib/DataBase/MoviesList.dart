@@ -1,19 +1,21 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MoviesList {
 
   String? id;
-  String ?primary_release_year;
+  String ?name;
+  bool ?is_added=false;
 
-  MoviesList(this.id,{this.primary_release_year});
+  MoviesList(this.id,{this.name,this.is_added});
 
   Map<String, dynamic> toFireStore() {
     return {
       'id': id,
-      'primary_release_year':primary_release_year
+      'name':name,
+      'is_added': is_added
    };
   }
 
   MoviesList.fromFireStore(Map<String, dynamic>? mp)
-      : this(mp?['id'],primary_release_year:mp?['primary_release_year']);
+      : this(mp?['id'],name:mp?['name']
+      ,is_added:mp?['is_added']);
 }

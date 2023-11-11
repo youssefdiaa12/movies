@@ -22,8 +22,8 @@ class Category{
       Category('Mystery', 'Mystery', 'mystery.png'),
       Category('Romance', 'Romance', 'romance.png'),
       Category('Science Fiction', 'Science Fiction', 'scienceFiction.png' ),
-      Category('TV Movie', 'TV Movie', 'thriller.png'),
-      Category('Thriller', 'Thriller', 'tvMovies.png'),
+      Category('TV Movie', 'TV Movie', 'tvMovies.png'),
+      Category('Thriller', 'Thriller', 'thriller.png'),
       Category('War', 'War', 'war.png' ),
       Category('Western', 'Western', 'western.png'),
 
