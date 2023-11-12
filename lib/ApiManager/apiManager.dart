@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movies/BrowseResponse/CategoryResponse.dart';
+import 'package:movies/BrowseResponse/MoreLikeThis/MoreLikeThisList.dart';
+import 'package:movies/BrowseResponse/MovieDetailsContent/MovieContentData.dart';
 import 'package:movies/MoviesResponse/MovieCategory.dart';
 import 'package:movies/SearchResponse/SearchResponse.dart';
 import 'package:movies/model/newReleasesResponse/NewReleasesResponse.dart';
@@ -87,5 +89,41 @@ class apiManager {
     var popularResponse = PopularResponse.fromJson(json);
     return popularResponse;
   }
+
+  static Future<MovieContentData> getContent(int id) async {
+    var url = Uri.parse('https://api.themoviedb.org/3/movie/$id?language=en-US');
+    var response = await http.get(
+      url,
+      headers: {
+        'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YmI0OWNlMGE4NmIyNTBkY2YwZjYzMTUwMWEwNmRjNSIsInN1YiI6IjY1M2Y3NTFjYmMyY2IzMDBhY2E0OTE0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ITwh7NU1_GurrLQJiNqo6Bc7gZOIPhhmkQM_NZopNmQ',
+        'Accept': 'application/json',
+      },
+    );
+    var json = jsonDecode(response.body);
+    var contentData = MovieContentData.fromJson(json);
+    print("bbbb");
+    print(contentData.title);
+    return contentData;
+  }
+  static Future<MoreLikeThisList> getMoreLikeThisList(int id) async {
+    var url = Uri.parse('https://api.themoviedb.org/3/movie/$id/similar?language=en-US&page=1');
+    var response = await http.get(
+      url,
+      headers: {
+        'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YmI0OWNlMGE4NmIyNTBkY2YwZjYzMTUwMWEwNmRjNSIsInN1YiI6IjY1M2Y3NTFjYmMyY2IzMDBhY2E0OTE0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ITwh7NU1_GurrLQJiNqo6Bc7gZOIPhhmkQM_NZopNmQ',
+        'Accept': 'application/json',
+      },
+    );
+    var json = jsonDecode(response.body);
+    var contentData = MoreLikeThisList.fromJson(json);
+    print(contentData.results);
+    print("aaaa");
+
+    return contentData;
+  }
+
+
 
 }

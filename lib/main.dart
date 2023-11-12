@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/HomeScreen.dart';
+import 'package:movies/ui/HomeTap/RecommendedMovieDetailsScreen.dart';
 import 'package:movies/ui/HomeTap/RecommendedMovieWidget.dart';
 import 'package:movies/ui/Movies/MoviesListWidget.dart';
 import 'package:movies/Provider/provider.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.routeName: (context) =>  HomeScreen(),
         MoviesListWidget.routeName: (context) =>  MoviesListWidget(),
         RecommendedMovieWidget.routeName: (context) =>  RecommendedMovieWidget(),
+        RecommendedMovieDetailScreen.routeName: (context) =>  RecommendedMovieDetailScreen(),
 
 
         HomeScreen.routeName: (context) => HomeScreen(),

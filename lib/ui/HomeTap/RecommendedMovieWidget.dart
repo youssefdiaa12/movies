@@ -22,6 +22,7 @@ class _RecommendedMovieWidgetState extends State<RecommendedMovieWidget> {
   @override
   void initState() {
     super.initState();
+    if(widget.recommendedMovie != null)
     fetchMovie();
   }
 
