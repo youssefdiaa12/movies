@@ -1,36 +1,34 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:movies/ui/MovieDetailsScreen/MoreLikeMovieWidget.dart';
-import 'package:movies/ui/MovieDetailsScreen/MovieDetails.dart';
+import 'package:movies/BrowseResponse/MoreLikeThis/MoreLikeThisResults.dart';
+import 'package:movies/ui/HomeTap/MoreLikeThisMovieWidgetList.dart';
+import 'package:movies/ui/HomeTap/RecommendedMovieDetailsScreen.dart';
 
-import '../../SearchResponse/SResults.dart';
-import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
+class moreLikeThisMovieCard extends StatelessWidget {
+  List<MoreLikeThisResults>? moreLikeThisMovies;
 
-
-
-
-class MoreLikeCardList extends StatelessWidget {
-
-
-  List<Results>? moviee;
-  MoreLikeCardList({this.moviee});
+  moreLikeThisMovieCard(this.moreLikeThisMovies, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 200,
+        height: 220,
         margin: EdgeInsets.symmetric(horizontal: 4),
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: moviee?.length ?? 0,
+          itemCount: moreLikeThisMovies?.length ?? 0,
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            Results movie = moviee![index];
+            MoreLikeThisResults movie = moreLikeThisMovies![index];
             return Padding(
               padding: const EdgeInsets.only(left: 12.0, top: 11.0),
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, MovieDetails.routeName , arguments: movie);
+                  Navigator.pushNamed(
+                      context, RecommendedMovieDetailScreen.routeName,
+                      arguments: movie.id);
+                  // navigate to movie details screen
                 },
                 child: Card(
                   color: Color(0xff343534),
@@ -44,7 +42,8 @@ class MoreLikeCardList extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: 137,
-                          child: MoreLikeMovieWidget(movie),
+                          child: MoreLikeThisMovieWidgetList(
+                              recommendedMovie: movie),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 11.0),
@@ -52,10 +51,7 @@ class MoreLikeCardList extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.star,
-                                color: Theme
-                                    .of(context)
-                                    .colorScheme
-                                    .secondary,
+                                color: Theme.of(context).colorScheme.secondary,
                                 size: 16,
                               ),
                               Padding(
@@ -71,10 +67,8 @@ class MoreLikeCardList extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 11.0),
                           child: Text(
-                            movie.name.toString().substring(
-                                0, min(12, movie.name
-                                .toString()
-                                .length)) ??
+                            movie.title.toString().substring(0,
+                                    min(12, movie.title.toString().length)) ??
                                 "",
                             style: TextStyle(color: Colors.white),
                           ),
@@ -82,7 +76,7 @@ class MoreLikeCardList extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 11.0),
                           child: Text(
-                            movie.firstAirDate.toString() ?? "",
+                            movie.releaseDate.toString() ?? "",
                             style: TextStyle(
                               color: Color(0xffB5B4B4),
                               fontWeight: FontWeight.w400,
@@ -97,8 +91,6 @@ class MoreLikeCardList extends StatelessWidget {
               ),
             );
           },
-        )
-    );
+        ));
   }
-
 }

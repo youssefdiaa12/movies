@@ -3,7 +3,6 @@ import 'package:movies/DataBase/MoiveDao.dart';
 import 'package:movies/DataBase/MoviesList.dart';
 import 'package:movies/DataBase/User.dart' as myuser;
 import 'package:movies/DataBase/userDao.dart';
-import 'package:movies/SearchResponse/Results.dart';
 
 class provider extends ChangeNotifier {
   bool is_visible = true;

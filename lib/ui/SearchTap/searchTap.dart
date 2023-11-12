@@ -32,7 +32,7 @@ class _searchTapState extends State<searchTap> {
                   setState(() {
                     response;
                   });
-                  },
+                },
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   fillColor: const Color(0xff514F4F),
@@ -57,18 +57,18 @@ class _searchTapState extends State<searchTap> {
         controller.text.isNotEmpty
             ? Expanded(child: resultListWidget(controller.text))
             : const Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image(image: AssetImage('assets/movies.png')),
-                  Center(
-                    child: Text('No movies found',
-                        style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.67))),
-                  ),
-
-                ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(image: AssetImage('assets/movies.png')),
+              Center(
+                child: Text('No movies found',
+                    style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.67))),
               ),
-            ),
+
+            ],
+          ),
+        ),
       ]),
     );
   }

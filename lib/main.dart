@@ -5,10 +5,10 @@ import 'package:movies/ui/HomeTap/RecommendedMovieWidget.dart';
 import 'package:movies/ui/Movies/MoviesListWidget.dart';
 import 'package:movies/Provider/provider.dart';
 import 'package:movies/firebase_options.dart';
-import 'package:movies/ui/MovieDetailsScreen/ContentScreen.dart';
-import 'package:movies/ui/MovieDetailsScreen/MovieDetails.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,17 +35,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-            backgroundColor: Colors.black,
-            titleTextStyle: TextStyle(color: Colors.white, fontSize: 24),
-            iconTheme: IconThemeData(color: Colors.white)),
         scaffoldBackgroundColor: Colors.black,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          type: BottomNavigationBarType.fixed,
-          unselectedItemColor: Colors.white,
-          enableFeedback: false,
           backgroundColor: Colors.transparent,
-          unselectedIconTheme: IconThemeData(size: 32),
+          elevation: 0,
           selectedIconTheme: IconThemeData(size: 32),
           selectedItemColor: Color(0xffFFB224),
         ),
@@ -65,8 +58,6 @@ class MyApp extends StatelessWidget {
 
 
         HomeScreen.routeName: (context) => HomeScreen(),
-        MovieDetails.routeName: (context) => MovieDetails(),
-        ContentScreen.routeName: (context) => ContentScreen(),
       },
     );
   }

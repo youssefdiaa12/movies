@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/ApiManager/apiManager.dart';
 import 'package:movies/BrowseResponse/MovieDetailsContent/MovieContentData.dart';
-import 'package:movies/model/newReleasesResponse/NewResult.dart';
 import 'package:movies/ui/HomeTap/RecommendedMoviedata.dart';
 
 class RecommendedMovieDetailScreen extends StatefulWidget {
