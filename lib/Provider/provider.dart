@@ -27,7 +27,7 @@ class provider extends ChangeNotifier {
   Future<MoviesList> getTask(MoviesList obj) async {
     var dbRef = await MovieDao.gettaskcollection().doc(obj.id).get();
     print(dbRef.data()?.id);
-    return dbRef.data()!;
+    return dbRef.data()?? MoviesList('1');
   }
 
 

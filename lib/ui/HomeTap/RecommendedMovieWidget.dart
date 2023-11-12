@@ -5,6 +5,41 @@ import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
 class RecommendedMovieWidget extends StatelessWidget {
   Results recommendedMovie;
 
+  RecommendedMovieWidget({Key? key, this.recommendedMovie}) : super(key: key);
+
+  @override
+  State<RecommendedMovieWidget> createState() => _RecommendedMovieWidgetState();
+}
+
+class _RecommendedMovieWidgetState extends State<RecommendedMovieWidget> {
+  MoviesList? movie;
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.recommendedMovie != null)
+    fetchMovie();
+  }
+
+  void fetchMovie() async {
+    provider obj = Provider.of<provider>(context, listen: false);
+    MoviesList fetchedMovie =
+        await obj.getTask(MoviesList(widget.recommendedMovie?.id.toString()));
+    setState(() {
+      movie = fetchedMovie;
+    });
+  }
+
+  void deleteFromFireStore() async {
+    provider obj = Provider.of<provider>(context, listen: false);
+    await obj.deleteTask(MoviesList(widget.recommendedMovie?.id.toString()));
+  }
+
+  void addToFireStore() async {
+    provider obj = Provider.of<provider>(context, listen: false);
+    await obj.addTask(
+        MoviesList(widget.recommendedMovie?.id.toString(), is_added: true,name: widget.recommendedMovie?.name));
+  }
   RecommendedMovieWidget(this.recommendedMovie);
 
   @override

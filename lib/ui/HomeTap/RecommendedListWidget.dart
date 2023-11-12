@@ -30,6 +30,7 @@ class _RecommendedListWidgetState extends State<RecommendedListWidget> {
           );
         }
         RecommendedResult recommendedList = snapshot.data!;
+        print(recommendedList.results);
         return MovieCard(recommendedList.results);
       },
     );

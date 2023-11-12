@@ -39,7 +39,7 @@ class watchListTap extends StatelessWidget {
               if (taskList == null || taskList.isEmpty) {
                 return const Center(
                   child: Text(
-                    'No tasks found',
+                    'No movies found',
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 );
