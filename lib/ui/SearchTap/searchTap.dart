@@ -56,7 +56,8 @@ class _searchTapState extends State<searchTap> {
       body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         controller.text.isNotEmpty
             ? Expanded(child: resultListWidget(controller.text))
-            : const Expanded(
+            :
+        const Expanded(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

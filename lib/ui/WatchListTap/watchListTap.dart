@@ -19,18 +19,22 @@ class watchListTap extends StatelessWidget {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blue)),
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-                  },
-                  child: Text(
-                    snapshot.error?.toString() ?? "",
+            }
+
+            else if (snapshot.hasError) {
+              return Expanded(
+                child: Center(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue)),
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()));
+                    },
+                    child: Text(
+                      snapshot.error?.toString() ?? "",
+                    ),
                   ),
                 ),
               );

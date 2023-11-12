@@ -18,7 +18,9 @@ class _resultListWidgetState extends State<resultListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    model.getMovieData(widget.search, id: widget.id);
+    widget.id ==null?
+    model.getMovieData(widget.search,id:''):
+    model.getMovieData(widget.search,id:widget.id);
     return BlocBuilder<searchViewModel, movieSearchState>(
       builder: (context, state) {
         switch (state) {
@@ -26,7 +28,7 @@ class _resultListWidgetState extends State<resultListWidget> {
             {
               // implicit casting
               return const Center(
-                child: CircularProgressIndicator(),
+
               );
             }
           case ErrorState():
@@ -45,12 +47,22 @@ class _resultListWidgetState extends State<resultListWidget> {
             }
           case SuccessState():
             {
-              return Container( // Add a Container to specify the size of the ListView
+              if(state.results.length ==1){
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  child: movieWidget(state.results[0]),
+                );
+              }
+
+              return SizedBox(
+
+                // Add a Container to specify the size of the ListView
                 height: MediaQuery.of(context).size.height * 0.8, // Adjust this value as needed
-                child: ListView.builder(
-                  itemCount: state.results.length ?? 0,
+                child:
+                ListView.builder(
+                  itemCount: state.results.length,
                   itemBuilder: (context, index) {
-                    return Container(
+                    return SizedBox(
                       height: MediaQuery.of(context).size.height * 0.2,
                       child: movieWidget(state.results[index]),
                     );
