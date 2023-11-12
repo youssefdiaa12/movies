@@ -4,15 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
 import 'package:movies/ui/HomeTap/RecommendedMovieDetailsScreen.dart';
 import 'package:movies/ui/HomeTap/RecommendedMovieWidget.dart';
-import 'package:movies/ui/MovieDetailsScreen/MoreLikeListWidget.dart';
-import 'package:movies/ui/MovieDetailsScreen/MovieDetails.dart';
-
-
 
 class MovieCard extends StatelessWidget {
-
   List<Results>? recommendedMovies;
-  MovieCard(this.recommendedMovies);
+
+  MovieCard(this.recommendedMovies, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +31,6 @@ class MovieCard extends StatelessWidget {
 
                   // navigate to movie details screen
                 },
-                   Navigator.pushNamed(context, MovieDetails.routeName , arguments: movie);
-                   },
                 child: Card(
                   color: Color(0xff343534),
                   surfaceTintColor: Colors.transparent,
@@ -57,10 +51,7 @@ class MovieCard extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.star,
-                                color: Theme
-                                    .of(context)
-                                    .colorScheme
-                                    .secondary,
+                                color: Theme.of(context).colorScheme.secondary,
                                 size: 16,
                               ),
                               Padding(
@@ -77,9 +68,7 @@ class MovieCard extends StatelessWidget {
                           padding: EdgeInsets.only(left: 11.0),
                           child: Text(
                             movie.name.toString().substring(
-                                0, min(12, movie.name
-                                .toString()
-                                .length)) ??
+                                0, min(12, movie.name.toString().length)) ??
                                 "",
                             style: TextStyle(color: Colors.white),
                           ),
@@ -102,8 +91,6 @@ class MovieCard extends StatelessWidget {
               ),
             );
           },
-        )
-    );
+        ));
   }
-
 }

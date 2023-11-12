@@ -2,12 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/DataBase/MoviesList.dart';
 import 'package:movies/Provider/provider.dart';
-import 'package:movies/model/newReleasesResponse/NewResult.dart';
+import 'package:movies/model/newReleasesResponse/Results.dart';
 import 'package:movies/ui/HomeTap/RecommendedMovieDetailsScreen.dart';
 import 'package:provider/provider.dart';
 
 class RelaseMovieWidget extends StatefulWidget {
-  NewResult newMovies;
+  Results newMovies;
 
   RelaseMovieWidget(this.newMovies);
 

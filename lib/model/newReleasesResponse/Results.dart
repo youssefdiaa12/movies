@@ -1,37 +1,36 @@
 /// adult : false
-/// backdrop_path : "/t5zCBSB5xMDKcDqe91qahCOUYVV.jpg"
+/// backdrop_path : "/7NRGAtu8E4343NSKwhkgmVRDINw.jpg"
 /// genre_ids : [27,9648]
 /// id : 507089
 /// original_language : "en"
 /// original_title : "Five Nights at Freddy's"
 /// overview : "Recently fired and desperate for work, a troubled young man named Mike agrees to take a position as a night security guard at an abandoned theme restaurant: Freddy Fazbear's Pizzeria. But he soon discovers that nothing at Freddy's is what it seems."
-/// popularity : 7124.811
+/// popularity : 2066.109
 /// poster_path : "/A4j8S6moJS2zNtRR8oWF08gRnL5.jpg"
 /// release_date : "2023-10-25"
 /// title : "Five Nights at Freddy's"
 /// video : false
-/// vote_average : 8.469
-/// vote_count : 1012
+/// vote_average : 8.103
+/// vote_count : 1946
 
-class NewResult {
-  NewResult({
-    this.adult,
-    this.backdropPath,
-    this.genreIds,
-    this.id,
-    this.originalLanguage,
-    this.originalTitle,
-    this.overview,
-    this.popularity,
-    this.posterPath,
-    this.releaseDate,
-    this.title,
-    this.video,
-    this.voteAverage,
-    this.voteCount,
-  });
+class Results {
+  Results({
+      this.adult, 
+      this.backdropPath, 
+      this.genreIds, 
+      this.id, 
+      this.originalLanguage, 
+      this.originalTitle, 
+      this.overview, 
+      this.popularity, 
+      this.posterPath, 
+      this.releaseDate, 
+      this.title, 
+      this.video, 
+      this.voteAverage, 
+      this.voteCount,});
 
-  NewResult.fromJson(dynamic json) {
+  Results.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
@@ -61,38 +60,35 @@ class NewResult {
   bool? video;
   double? voteAverage;
   int? voteCount;
-  NewResult copyWith({
-    bool? adult,
-    String? backdropPath,
-    List<int>? genreIds,
-    int? id,
-    String? originalLanguage,
-    String? originalTitle,
-    String? overview,
-    double? popularity,
-    String? posterPath,
-    String? releaseDate,
-    String? title,
-    bool? video,
-    double? voteAverage,
-    int? voteCount,
-  }) =>
-      NewResult(
-        adult: adult ?? this.adult,
-        backdropPath: backdropPath ?? this.backdropPath,
-        genreIds: genreIds ?? this.genreIds,
-        id: id ?? this.id,
-        originalLanguage: originalLanguage ?? this.originalLanguage,
-        originalTitle: originalTitle ?? this.originalTitle,
-        overview: overview ?? this.overview,
-        popularity: popularity ?? this.popularity,
-        posterPath: posterPath ?? this.posterPath,
-        releaseDate: releaseDate ?? this.releaseDate,
-        title: title ?? this.title,
-        video: video ?? this.video,
-        voteAverage: voteAverage ?? this.voteAverage,
-        voteCount: voteCount ?? this.voteCount,
-      );
+Results copyWith({  bool? adult,
+  String? backdropPath,
+  List<int>? genreIds,
+  int? id,
+  String? originalLanguage,
+  String? originalTitle,
+  String? overview,
+  double? popularity,
+  String? posterPath,
+  String? releaseDate,
+  String? title,
+  bool? video,
+  double? voteAverage,
+  int? voteCount,
+}) => Results(  adult: adult ?? this.adult,
+  backdropPath: backdropPath ?? this.backdropPath,
+  genreIds: genreIds ?? this.genreIds,
+  id: id ?? this.id,
+  originalLanguage: originalLanguage ?? this.originalLanguage,
+  originalTitle: originalTitle ?? this.originalTitle,
+  overview: overview ?? this.overview,
+  popularity: popularity ?? this.popularity,
+  posterPath: posterPath ?? this.posterPath,
+  releaseDate: releaseDate ?? this.releaseDate,
+  title: title ?? this.title,
+  video: video ?? this.video,
+  voteAverage: voteAverage ?? this.voteAverage,
+  voteCount: voteCount ?? this.voteCount,
+);
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['adult'] = adult;
@@ -111,4 +107,5 @@ class NewResult {
     map['vote_count'] = voteCount;
     return map;
   }
+
 }

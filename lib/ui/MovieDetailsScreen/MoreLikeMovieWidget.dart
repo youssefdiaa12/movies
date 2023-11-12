@@ -9,7 +9,7 @@ import '../../SearchResponse/SResults.dart';
 
 class MoreLikeMovieWidget extends StatelessWidget {
 
-  Results movie;
+  MoreLikeResult movie;
   MoreLikeMovieWidget(this.movie);
 
   @override
@@ -25,8 +25,8 @@ class MoreLikeMovieWidget extends StatelessWidget {
               height: 137,
               width: 86,
               imageUrl:
-                  "https://image.tmdb.org/t/p/w500/${movie.backdropPath}" ??
-                      '',
+              "https://image.tmdb.org/t/p/w500/${movie.backdropPath}" ??
+                  '',
               imageBuilder: (context, imageProvider) => Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
