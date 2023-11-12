@@ -14,8 +14,6 @@ class resultListWidget extends StatefulWidget {
 }
 
 class _resultListWidgetState extends State<resultListWidget> {
-
-
   var model = searchViewModel();
 
   @override
@@ -37,32 +35,22 @@ class _resultListWidgetState extends State<resultListWidget> {
                 child: ElevatedButton(
                   child: Text(
                     state.errorMessage ?? 'Error',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    model.getMovieData(widget.search,id: widget.id);
+                    model.getMovieData(widget.search);
                   },
                 ),
               );
             }
           case SuccessState():
             {
-              if(state.results.length ==1){
-                return SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  child: movieWidget(state.results[0]),
-                );
-              }
-
-              return SizedBox(
-
-                // Add a Container to specify the size of the ListView
+              return Container( // Add a Container to specify the size of the ListView
                 height: MediaQuery.of(context).size.height * 0.8, // Adjust this value as needed
-                child:
-                ListView.builder(
-                  itemCount: state.results.length,
+                child: ListView.builder(
+                  itemCount: state.results.length ?? 0,
                   itemBuilder: (context, index) {
-                    return SizedBox(
+                    return Container(
                       height: MediaQuery.of(context).size.height * 0.2,
                       child: movieWidget(state.results[index]),
                     );
