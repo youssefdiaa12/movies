@@ -29,9 +29,10 @@ class homeTap extends StatelessWidget {
                       child: const Text(
                         'New Releases',
                         style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 20,
                             color: Colors.white,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w400 ,
+                        fontFamily: "c"),
                       ),
                     ),
                     const SizedBox(
@@ -53,13 +54,14 @@ class homeTap extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Container(
-                      margin: EdgeInsets.all(12),
+                      margin: EdgeInsets.symmetric(horizontal: 8 , vertical: 5),
                       child: Text(
                         'Recommended',
                         style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 20,
                             color: Colors.white,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w400 ,
+                        fontFamily: "c"),
                       ),
                     ),
                     SizedBox(height: 220, child: RecommendedListWidget()),

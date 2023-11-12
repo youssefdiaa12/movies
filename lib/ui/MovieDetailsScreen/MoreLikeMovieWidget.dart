@@ -4,7 +4,7 @@ import 'package:movies/model/MoreLikeResponseList/MoreLikeListResponse.dart';
 import 'package:movies/model/MoreLikeResponseList/MoreLikeResult.dart';
 import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
 
-import '../../SearchResponse/SResults.dart';
+// import '../../SearchResponse/SResults.dart';
 
 
 class MoreLikeMovieWidget extends StatelessWidget {

@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 class RecommendedMoviedata extends StatefulWidget {
   MovieContentData? movie;
-  int size=0;
+  int size = 0;
 
   RecommendedMoviedata(this.movie, {super.key});
 
@@ -23,22 +23,24 @@ class _RecommendedMoviedataState extends State<RecommendedMoviedata> {
   @override
   void initState() {
     super.initState();
-    if(widget.movie != null) {
+    if (widget.movie != null) {
       fetchMovie();
-     widget.movie?.genres?.length!=null?widget.size=widget.movie!.genres!.length:0;
+      widget.movie?.genres?.length != null
+          ? widget.size = widget.movie!.genres!.length
+          : 0;
     }
   }
 
   void fetchMovie() async {
     if (widget.movie != null && widget.movie!.id != null) {
       provider obj = Provider.of<provider>(context, listen: false);
-      MoviesList fetchedMovie = await obj.getTask(MoviesList(widget.movie!.id.toString()));
+      MoviesList fetchedMovie =
+          await obj.getTask(MoviesList(widget.movie!.id.toString()));
       setState(() {
         movie1 = fetchedMovie;
       });
     }
   }
-
 
   void deleteFromFireStore() async {
     provider obj = Provider.of<provider>(context, listen: false);
@@ -59,19 +61,23 @@ class _RecommendedMoviedataState extends State<RecommendedMoviedata> {
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
-          }
-          , icon: Icon(Icons.arrow_back,color: Colors.white,),
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(right:24.0),
-          child: Center(child: Text(widget.movie?.title ?? "",style: TextStyle(color: Colors.white),)),
+        title: Text(
+          widget.movie?.title ?? "",
+          style: TextStyle(color: Colors.white ,fontFamily: "a" , fontSize: 25),
         ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           InkWell(
-            onTap: () {
-              },
+            onTap: () {},
             child: Image.network(
               "https://image.tmdb.org/t/p/w500/${widget.movie?.backdropPath}",
               height: 200,
@@ -79,8 +85,18 @@ class _RecommendedMoviedataState extends State<RecommendedMoviedata> {
               fit: BoxFit.cover,
             ),
           ),
-          Text(widget.movie?.title ?? "",style: TextStyle(color: Colors.white),),
-          Text(widget.movie?.releaseDate ?? "",style: TextStyle(color: Colors.grey),),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            widget.movie?.title ?? "",
+            style:
+                TextStyle(color: Colors.white, fontSize: 25, fontFamily: "a"),
+          ),
+          Text(
+            widget.movie?.releaseDate ?? "",
+            style: TextStyle(color: Colors.grey),
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -90,31 +106,29 @@ class _RecommendedMoviedataState extends State<RecommendedMoviedata> {
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 4),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 12.0, top: 11.0),
-                      child:
-
-
-                      CachedNetworkImage(
-                        height: 137,
-                        width: 86,
-                        fit: BoxFit.cover,
-                        imageUrl:"https://image.tmdb.org/t/p/w500/${widget.movie?.backdropPath}" ?? '',
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
+                        padding: const EdgeInsets.only(left: 12.0, top: 11.0),
+                        child: CachedNetworkImage(
+                          height: 137,
+                          width: 86,
+                          fit: BoxFit.cover,
+                          imageUrl:
+                              "https://image.tmdb.org/t/p/w500/${widget.movie?.backdropPath}" ??
+                                  '',
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        placeholder: (context, url) => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                        errorWidget: (context, url, error) => const Center(
-                          child: Icon(Icons.error, color: Colors.grey),
-                        ),
-                      )
-                    ),
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          errorWidget: (context, url, error) => const Center(
+                            child: Icon(Icons.error, color: Colors.grey),
+                          ),
+                        )),
                   ),
                   movie1 != null
                       ? movie1?.is_added == true
@@ -170,52 +184,72 @@ class _RecommendedMoviedataState extends State<RecommendedMoviedata> {
                         ),
                 ],
               ),
-              SizedBox(width: 6,),
+              SizedBox(
+                width: 6,
+              ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Row(
                       children: [
-                        widget.movie?.genres?.length==1?Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 65,
-                            height: 25,
-                            decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                            child: Center(
-                              child: Text(widget.movie?.genres?[0].name ?? "",style: TextStyle(color: Colors.white),),
-                            )
-                          ),
-                        ):Container(),
-                        if (widget.size > 1) Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                              width: 65,
-                              height: 25,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                              child: Center(
-                                child: Text(widget.movie?.genres?[1].name ?? "",style: TextStyle(color: Colors.white),),
+                        widget.movie?.genres?.length == 1
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                    width: 65,
+                                    height: 25,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey)),
+                                    child: Center(
+                                      child: Text(
+                                        widget.movie?.genres?[0].name ?? "",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    )),
                               )
-                          ),
-                        ) else Container(),
-                    if (widget.size >2) Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                              width: 65,
-                              height: 25,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                              child: Center(
-                                child: Text(
-                                  widget.movie?.genres?[2].name ?? "",style: TextStyle(color: Colors.white),),
-                              )
-                          ),
-                        ) else Container(),
+                            : Container(),
+                        if (widget.size > 1)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                                width: 65,
+                                height: 25,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey)),
+                                child: Center(
+                                  child: Text(
+                                    widget.movie?.genres?[1].name ?? "",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                )),
+                          )
+                        else
+                          Container(),
+                        if (widget.size > 2)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                                width: 65,
+                                height: 25,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey)),
+                                child: Center(
+                                  child: Text(
+                                    widget.movie?.genres?[2].name ?? "",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                )),
+                          )
+                        else
+                          Container(),
                       ],
                     ),
-
-                    Text(widget.movie?.overview ?? "",style: TextStyle(color: Colors.white),),
+                    Text(
+                      widget.movie?.overview ?? "",
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 18, fontFamily: "a"),
+                    ),
                     SizedBox(
                       height: 10,
                     ),
@@ -225,8 +259,14 @@ class _RecommendedMoviedataState extends State<RecommendedMoviedata> {
                           Icons.star,
                           color: Colors.amber,
                         ),
-                        Text(widget.movie?.voteAverage.toString() ?? "",style: TextStyle(color: Colors.white),),
+                        Text(
+                          widget.movie?.voteAverage.toString() ?? "",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 50,
                     )
                   ],
                 ),
@@ -234,36 +274,43 @@ class _RecommendedMoviedataState extends State<RecommendedMoviedata> {
             ],
           ),
           Container(
-            color: Colors.grey[900],
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text("More Like This",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 14),),
-              ),
-                FutureBuilder(
-                  future: apiManager.getMoreLikeThisList(widget.movie?.id ?? 0),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(
-                        child: Column(
-                          children: [
-                            Text(snapshot.error.toString()),
-                            ElevatedButton(onPressed: () {}, child: Text('Try Again'))
-                          ],
-                        ),
-                      );
-                    }
-                    var movie = snapshot.data?.results??[];
-                    return moreLikeThisMovieCard(movie);
-                  },
-                ),
-
-              ],)
-          ),
+              color: Colors.grey[900],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: Text(
+                      "More Like This",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 18),
+                    ),
+                  ),
+                  FutureBuilder(
+                    future:
+                        apiManager.getMoreLikeThisList(widget.movie?.id ?? 0),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(
+                          child: Column(
+                            children: [
+                              Text(snapshot.error.toString()),
+                              ElevatedButton(
+                                  onPressed: () {}, child: Text('Try Again'))
+                            ],
+                          ),
+                        );
+                      }
+                      var movie = snapshot.data?.results ?? [];
+                      return moreLikeThisMovieCard(movie);
+                    },
+                  ),
+                ],
+              )),
         ]),
       ),
     );

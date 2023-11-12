@@ -64,7 +64,8 @@ class _ContentScreenState extends State<ContentScreen> {
             ),
           ),
           Container(
-              margin: EdgeInsets.only(top: 12, left: 22),
+            color: Colors.red,
+              margin: EdgeInsets.only(top: 20, left: 22),
               child: Text(
                 widget.movie?.title??"",
                 style: TextStyle(color: Colors.white, fontSize: 20),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:movies/ApiManager/apiManager.dart';
 
 import 'MoviesWidget.dart';
@@ -14,6 +15,16 @@ class MoviesListWidget extends StatelessWidget {
     var args = ModalRoute.of(context)?.settings.arguments as MoviesListWidget;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Container(
+            height: 50,
+            width: 200,
+            child: Lottie.network(
+                "https://lottie.host/19e350a3-71fb-41e6-af52-a69cac311867/rvj70SfJEh.json")),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       body: FutureBuilder(
         future: apiManager.getMovies(args.genres.toString()),
         builder: (context, snapshot) {

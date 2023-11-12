@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/HomeScreen.dart';
+import 'package:movies/splash.dart';
 import 'package:movies/ui/HomeTap/RecommendedMovieDetailsScreen.dart';
 import 'package:movies/ui/HomeTap/RecommendedMovieWidget.dart';
 import 'package:movies/ui/Movies/MoviesListWidget.dart';
@@ -37,10 +38,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          unselectedLabelStyle: TextStyle(
+            fontFamily: "a"
+          ),
+          selectedLabelStyle: TextStyle(
+            fontFamily: "a"
+          ),
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: Colors.white,
+          enableFeedback: false,
           backgroundColor: Colors.transparent,
-          elevation: 0,
+          unselectedIconTheme: IconThemeData(size: 32),
           selectedIconTheme: IconThemeData(size: 32),
           selectedItemColor: Color(0xffFFB224),
+
         ),
         primaryColor: Color(0xff1A1A1A),
         colorScheme: ColorScheme.fromSeed(
@@ -49,8 +60,9 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      initialRoute: HomeScreen.routeName,
+      initialRoute: splash.routeName,
       routes: {
+        splash.routeName :(context) => splash(),
         HomeScreen.routeName: (context) =>  HomeScreen(),
         MoviesListWidget.routeName: (context) =>  MoviesListWidget(),
         RecommendedMovieWidget.routeName: (context) =>  RecommendedMovieWidget(),

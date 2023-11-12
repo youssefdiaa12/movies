@@ -46,8 +46,7 @@ class _PopularListWidgetState extends State<PopularListWidget> {
                 popularWidget(state.results[itemIndex]),
             options: CarouselOptions(
               autoPlay: true,
-
-              height: 270,
+              height: 300,
               autoPlayInterval: const Duration(seconds: 5),
               autoPlayAnimationDuration: const Duration(milliseconds: 800),
               autoPlayCurve: Curves.fastOutSlowIn,

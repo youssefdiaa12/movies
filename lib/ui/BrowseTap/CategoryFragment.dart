@@ -26,7 +26,8 @@ class CategoryFragment extends StatelessWidget{
             style: const TextStyle(
               color:Colors.white ,
               fontWeight: FontWeight.bold,
-              fontSize: 24,),
+              fontSize: 24,
+            fontFamily: "a" ),
           ),
         ] );
   }

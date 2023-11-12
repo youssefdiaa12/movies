@@ -26,37 +26,27 @@ class popularWidget extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          CachedNetworkImage(
-                              imageUrl: "https://image.tmdb.org/t/p/original/${movies.backdropPath}"  ?? ''),
-
-                        ],
-                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      child: CachedNetworkImage(
+                          imageUrl: "https://image.tmdb.org/t/p/original/${movies.backdropPath}"  ?? ''),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right:40.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            movies.title?.substring(0,min(20,movies.title!.length)) ?? '',
-                            style: const TextStyle(fontSize: 14, color: Colors.white),
+                    Column(
+                      children: [
+                        Text(
+                          movies.title?.substring(0,min(20,movies.title!.length)) ?? '',
+                          style: const TextStyle(fontSize: 26, color: Colors.white ,fontFamily: "b"),
+                        ),
+                        Text(
+                          movies.releaseDate ?? '',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Color(0xffB5B4B4),
+                            fontWeight: FontWeight.w400,
                           ),
-                          Text(
-                            movies.releaseDate ?? '',
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: Color(0xffB5B4B4),
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     )
 
                   ],

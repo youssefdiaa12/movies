@@ -46,6 +46,8 @@ dependencies:
   cloud_firestore: ^4.12.2
   carousel_slider: ^4.2.1
   flutter_slidable: ^3.0.1
+  lottie: ^2.7.0
+  animated_splash_screen: ^1.3.0
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +77,23 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/
+
+  fonts:
+    - family: a
+      fonts:
+        - asset: fonts/KOUFIBD.TTF
+
+    - family: b
+      fonts:
+        - asset: fonts/ElMessiri-SemiBold.ttf
+
+    - family: c
+      fonts:
+        - asset: fonts/DTHULUTH.TTF
+
+    - family: d
+      fonts:
+        - asset: fonts/JF Flat regular.otf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

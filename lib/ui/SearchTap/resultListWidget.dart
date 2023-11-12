@@ -28,7 +28,7 @@ class _resultListWidgetState extends State<resultListWidget> {
             {
               // implicit casting
               return const Center(
-
+                child: CircularProgressIndicator(),
               );
             }
           case ErrorState():
