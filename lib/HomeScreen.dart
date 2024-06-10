@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Container(
+        title: SizedBox(
             height: 50,
             width: 200,
             child: Lottie.network(
@@ -38,19 +38,19 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
-              icon: Icon(Icons.home),
+              icon: const Icon(Icons.home),
               label: 'Home' ),
           BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
               label: 'Search'),
           BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
-              icon: Icon(Icons.movie),
+              icon: const Icon(Icons.movie),
               label: 'Browse'),
           BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
-              icon: Icon(Icons.collections_bookmark),
+              icon: const Icon(Icons.collections_bookmark),
               label: 'Watchlist'),
         ],
       ),
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  var tabs = [homeTap(), searchTap(), browseTab(), watchListTap()];
+  var tabs = [const homeTap(), searchTap(), browseTab(), const watchListTap()];
 
   int selectedTabIndex = 0;
 }

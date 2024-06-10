@@ -6,7 +6,7 @@ import 'package:movies/popularResponse/Results.dart';
 import 'package:movies/ui/HomeTap/RecommendedMovieDetailsScreen.dart';
 
 class popularWidget extends StatelessWidget {
-  final Results movies;
+  final Results? movies;
 
   popularWidget(this.movies, {Key? key}) : super(key: key);
 
@@ -16,7 +16,7 @@ class popularWidget extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
             context, RecommendedMovieDetailScreen.routeName,
-            arguments: movies.id);
+            arguments: movies?.id);
       },
       child: SingleChildScrollView(
         child: Column(
@@ -30,16 +30,16 @@ class popularWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 30),
                       child: CachedNetworkImage(
-                          imageUrl: "https://image.tmdb.org/t/p/original/${movies.backdropPath}"  ?? ''),
+                          imageUrl: "https://image.tmdb.org/t/p/original/${movies?.backdropPath}"  ?? ''),
                     ),
                     Column(
                       children: [
                         Text(
-                          movies.title?.substring(0,min(20,movies.title!.length)) ?? '',
+                          movies?.title?.substring(0,min(20,movies?.title!.length??0)) ?? '',
                           style: const TextStyle(fontSize: 26, color: Colors.white ,fontFamily: "b"),
                         ),
                         Text(
-                          movies.releaseDate ?? '',
+                          movies?.releaseDate ?? '',
                           style: const TextStyle(
                             fontSize: 14,
                             color: Color(0xffB5B4B4),

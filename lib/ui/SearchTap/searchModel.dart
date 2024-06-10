@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/ApiManager/apiManager.dart';
-import 'package:movies/DataBase/MoiveDao.dart';
-import 'package:movies/DataBase/MoviesList.dart';
 import 'package:movies/SearchResponse/Results.dart';
+import 'package:movies/model/DataBase/MoiveDao.dart';
+import 'package:movies/model/DataBase/MoviesList.dart';
 
 class searchViewModel extends Cubit<movieSearchState> {
   searchViewModel() : super(LoadingState());
@@ -14,7 +14,7 @@ class searchViewModel extends Cubit<movieSearchState> {
       var answer=response.results!.where((element) => element.id.toString().contains(id!)).toList();
       if(answer.length == 0) {
 
-        MovieDao.deleteTask(MoviesList(id.toString()));
+        MovieDao.deleteTask(MoviesList(id: id.toString()));
 
       }
 

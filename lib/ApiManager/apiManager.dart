@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:either_dart/either.dart';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:movies/BrowseResponse/CategoryResponse.dart';
 import 'package:movies/BrowseResponse/MoreLikeThis/MoreLikeThisList.dart';
 import 'package:movies/BrowseResponse/MovieDetailsContent/MovieContentData.dart';
@@ -9,7 +11,7 @@ import 'package:movies/model/newReleasesResponse/NewReleasesResponse.dart';
 import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
 import 'package:movies/popularResponse/Popular_Response.dart';
 
-
+@singleton
 class apiManager {
   static const baseUrl = 'api.themoviedb.org';
 
@@ -31,28 +33,38 @@ class apiManager {
     return searchResponse;
   }
 
-  static Future<NewReleasesResponse> getNewReleases() async {
+  static Future<Either<NewReleasesResponse, String>> getNewReleases() async {
     var url = Uri.https(baseUrl, '/3/movie/upcoming', {
       'api_key': '6bb49ce0a86b250dcf0f631501a06dc5',
       'language': 'en-US',
       'page': '1',
     });
-
-    var response = await http.get(url);
-    var json = jsonDecode(response.body);
-    var newReleasesResponse = NewReleasesResponse.fromJson(json);
-    return newReleasesResponse;
+    try {
+      var response = await http.get(url);
+      var json = jsonDecode(response.body);
+      var newReleasesResponse = NewReleasesResponse.fromJson(json);
+      return Left(newReleasesResponse);
+    }
+    catch (e) {
+      print(e);
+      return Right(e.toString());
+    }
   }
 
-  static Future<RecommendedResult> getRecommended() async {
+  static Future<Either<RecommendedResult, String>> getRecommended() async {
     var apiKey = '6bb49ce0a86b250dcf0f631501a06dc5';
     var baseUrl = 'api.themoviedb.org';
     var url = Uri.https(baseUrl, '/3/tv/top_rated', {'api_key': apiKey});
-
-    var response = await http.get(url);
-    var json = jsonDecode(response.body);
-    RecommendedResult recommendedResponse = RecommendedResult.fromJson(json);
-    return recommendedResponse;
+try {
+  var response = await http.get(url);
+  var json = jsonDecode(response.body);
+  RecommendedResult recommendedResponse = RecommendedResult.fromJson(json);
+  return Left(recommendedResponse);
+}
+catch (e) {
+  print(e);
+  return Right(e.toString());
+}
   }
 
   static Future<CategoryResponse> getCategory() async {

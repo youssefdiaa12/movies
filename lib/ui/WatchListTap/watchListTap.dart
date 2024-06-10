@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/ApiManager/apiManager.dart';
-import 'package:movies/DataBase/MoiveDao.dart';
 import 'package:movies/HomeScreen.dart';
+import 'package:movies/model/DataBase/MoiveDao.dart';
 import 'package:movies/ui/SearchTap/resultListWidget.dart';
 
 class watchListTap extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/ApiManager/apiManager.dart';
 import 'package:movies/BrowseResponse/MovieDetailsContent/MovieContentData.dart';
-import 'package:movies/DataBase/MoviesList.dart';
+import 'package:movies/model/DataBase/MoviesList.dart';
 import 'package:movies/Provider/provider.dart';
 import 'package:movies/ui/HomeTap/moreLikeThisMovieCard.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +35,7 @@ class _RecommendedMoviedataState extends State<RecommendedMoviedata> {
     if (widget.movie != null && widget.movie!.id != null) {
       provider obj = Provider.of<provider>(context, listen: false);
       MoviesList fetchedMovie =
-          await obj.getTask(MoviesList(widget.movie!.id.toString()));
+          await obj.getTask(MoviesList(id: widget.movie!.id.toString()));
       setState(() {
         movie1 = fetchedMovie;
       });
@@ -44,12 +44,12 @@ class _RecommendedMoviedataState extends State<RecommendedMoviedata> {
 
   void deleteFromFireStore() async {
     provider obj = Provider.of<provider>(context, listen: false);
-    await obj.deleteTask(MoviesList(widget.movie?.id.toString()));
+    await obj.deleteTask(MoviesList(id: widget.movie?.id.toString()));
   }
 
   void addToFireStore() async {
     provider obj = Provider.of<provider>(context, listen: false);
-    await obj.addTask(MoviesList(widget.movie?.id.toString(),
+    await obj.addTask(MoviesList(id: widget.movie?.id.toString(),
         is_added: true, name: widget.movie?.title));
   }
 

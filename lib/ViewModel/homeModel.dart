@@ -4,7 +4,6 @@ import 'package:movies/popularResponse/Results.dart';
 
 class homeViewModel extends Cubit<moviePopularState> {
   homeViewModel() : super(LoadingState());
-
   void getMovieData() async {
     emit(LoadingState());
     try {

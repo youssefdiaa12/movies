@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/ui/HomeTap/homeModel.dart';
+import 'package:movies/ViewModel/homeModel.dart';
 import 'package:movies/ui/HomeTap/popularWidget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PopularListWidget extends StatefulWidget {
   PopularListWidget();
@@ -26,8 +28,29 @@ class _PopularListWidgetState extends State<PopularListWidget> {
     return BlocBuilder<homeViewModel, moviePopularState>(
       builder: (context, state) {
         if (state is LoadingState) {
-          return const Center();
-        } else if (state is ErrorState) {
+          return CarouselSlider.builder(
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+                Shimmer.fromColors(
+                    baseColor: Colors.grey,
+                    highlightColor: Colors.white,
+                    child: Container(
+                      height: 30.h,
+                      width: 80.w,
+                      color: Colors.grey,
+                    ),),
+            options: CarouselOptions(
+              autoPlay: true,
+              height: 30.h,
+              autoPlayInterval: const Duration(seconds: 5),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+              scrollDirection: Axis.horizontal,
+            ),
+          );
+        }
+        else if (state is ErrorState) {
           return Center(
             child: ElevatedButton(
               child: Text(
@@ -46,7 +69,7 @@ class _PopularListWidgetState extends State<PopularListWidget> {
                 popularWidget(state.results[itemIndex]),
             options: CarouselOptions(
               autoPlay: true,
-              height: 300,
+              height: 35.h,
               autoPlayInterval: const Duration(seconds: 5),
               autoPlayAnimationDuration: const Duration(milliseconds: 800),
               autoPlayCurve: Curves.fastOutSlowIn,
@@ -55,7 +78,27 @@ class _PopularListWidgetState extends State<PopularListWidget> {
             ),
           );
         } else {
-          return const SizedBox();
+          return CarouselSlider.builder(
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+                Shimmer.fromColors(
+                  baseColor: Colors.grey,
+                  highlightColor: Colors.white,
+                  child: Container(
+                    height: 30.h,
+                    width: 80.w,
+                    color: Colors.grey,
+                  ),),
+            options: CarouselOptions(
+              autoPlay: true,
+              height: 30.h,
+              autoPlayInterval: const Duration(seconds: 5),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+              scrollDirection: Axis.horizontal,
+            ),
+          );
         }
       },
       bloc: model,

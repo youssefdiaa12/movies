@@ -10,7 +10,7 @@ class splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: AnimatedSplashScreen(
           splashIconSize: 250,
@@ -20,7 +20,7 @@ class splash extends StatelessWidget {
           curve: Curves.fastOutSlowIn,
           backgroundColor: Colors.black,
           splash: Center(
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               child: Lottie.network("https://lottie.host/19e350a3-71fb-41e6-af52-a69cac311867/rvj70SfJEh.json"),
             ),

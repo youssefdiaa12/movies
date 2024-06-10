@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/BrowseResponse/MoreLikeThis/MoreLikeThisResults.dart';
-import 'package:movies/DataBase/MoviesList.dart';
+import 'package:movies/model/DataBase/MoviesList.dart';
 import 'package:movies/HomeScreen.dart';
 import 'package:movies/Provider/provider.dart';
 import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
@@ -29,7 +29,7 @@ class _MoreLikeThisMovieWidgetListState extends State<MoreLikeThisMovieWidgetLis
   void fetchMovie() async {
     provider obj = Provider.of<provider>(context, listen: false);
     MoviesList fetchedMovie =
-    await obj.getTask(MoviesList(widget.recommendedMovie?.id.toString()));
+    await obj.getTask(MoviesList(id: widget.recommendedMovie?.id.toString()));
     setState(() {
       movie = fetchedMovie;
     });
@@ -37,13 +37,13 @@ class _MoreLikeThisMovieWidgetListState extends State<MoreLikeThisMovieWidgetLis
 
   void deleteFromFireStore() async {
     provider obj = Provider.of<provider>(context, listen: false);
-    await obj.deleteTask(MoviesList(widget.recommendedMovie?.id.toString()));
+    await obj.deleteTask(MoviesList(id: widget.recommendedMovie?.id.toString()));
   }
 
   void addToFireStore() async {
     provider obj = Provider.of<provider>(context, listen: false);
     await obj.addTask(
-        MoviesList(widget.recommendedMovie?.id.toString(), is_added: true,name: widget.recommendedMovie?.title));
+        MoviesList(id: widget.recommendedMovie?.id.toString(), is_added: true,name: widget.recommendedMovie?.title));
   }
 
   @override

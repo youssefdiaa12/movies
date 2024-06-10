@@ -1,9 +1,8 @@
 import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:movies/DataBase/MoviesList.dart';
+import 'package:movies/model/DataBase/MoviesList.dart';
 import 'package:movies/Provider/provider.dart';
 import 'package:movies/SearchResponse/Results.dart';
 import 'package:movies/ui/HomeTap/RecommendedMovieDetailsScreen.dart';
@@ -40,7 +39,8 @@ class _movieWidgetState extends State<movieWidget> {
           padding: const EdgeInsets.all(12),
         ),
       ]),
-      child: Padding(
+      child:
+      Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
@@ -135,6 +135,6 @@ class _movieWidgetState extends State<movieWidget> {
     Navigator.pop(context);
     provider obj = Provider.of<provider>(context, listen: false);
     print(widget.movies.releaseDate);
-    await obj.deleteTask(MoviesList(widget.movies.id.toString()));
+    await obj.deleteTask(MoviesList(id: widget.movies.id.toString()));
   }
 }

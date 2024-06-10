@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies/DataBase/MoiveDao.dart';
-import 'package:movies/DataBase/MoviesList.dart';
-import 'package:movies/DataBase/User.dart' as myuser;
-import 'package:movies/DataBase/userDao.dart';
+import 'package:movies/model/DataBase/User.dart' as myuser;
+import 'package:movies/model/DataBase/userDao.dart';
+import 'package:movies/model/DataBase/MoiveDao.dart';
+import 'package:movies/model/DataBase/MoviesList.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class provider extends ChangeNotifier {
   bool is_visible = true;
   myuser.User? user;
@@ -26,7 +28,7 @@ class provider extends ChangeNotifier {
   Future<MoviesList> getTask(MoviesList obj) async {
     var dbRef = await MovieDao.gettaskcollection().doc(obj.id).get();
     print(dbRef.data()?.id);
-    return dbRef.data()?? MoviesList('1');
+    return dbRef.data()?? MoviesList(id:'1');
   }
 
 

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movies/DataBase/MoviesList.dart';
-import 'package:movies/DataBase/userDao.dart';
+import 'package:movies/model/DataBase/userDao.dart';
+import 'package:movies/model/DataBase/MoviesList.dart';
 
 class MovieDao {
   static CollectionReference<MoviesList> gettaskcollection({String? id}) {

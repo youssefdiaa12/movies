@@ -5,7 +5,7 @@ class MoviesList {
   String ?name;
   bool ?is_added=false;
 
-  MoviesList(this.id,{this.name,this.is_added});
+  MoviesList({this.id,this.name,this.is_added});
 
   Map<String, dynamic> toFireStore() {
     return {
@@ -16,6 +16,6 @@ class MoviesList {
   }
 
   MoviesList.fromFireStore(Map<String, dynamic>? mp)
-      : this(mp?['id'],name:mp?['name']
+      : this(id: mp?['id'],name:mp?['name']
       ,is_added:mp?['is_added']);
 }

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movies/DataBase/User.dart';
+import 'package:movies/model/DataBase/User.dart';
 
 class userDao {
 

@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/DataBase/MoviesList.dart';
-import 'package:movies/HomeScreen.dart';
+import 'package:movies/model/DataBase/MoviesList.dart';
 import 'package:movies/Provider/provider.dart';
 import 'package:movies/model/recommendedResponse/RecommendedResult.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shimmer/shimmer.dart';
 
 class RecommendedMovieWidget extends StatefulWidget {
   static const routeName = '/RecommendedMovieWidget';
@@ -28,20 +29,18 @@ class _RecommendedMovieWidgetState extends State<RecommendedMovieWidget> {
   void fetchMovie() async {
     provider obj = Provider.of<provider>(context, listen: false);
     MoviesList fetchedMovie =
-        await obj.getTask(MoviesList(widget.recommendedMovie?.id.toString()));
-    setState(() {
-      movie = fetchedMovie;
-    });
+        await obj.getTask(MoviesList(id: widget.recommendedMovie?.id.toString()));
+    movie = fetchedMovie;
   }
 
   void deleteFromFireStore() async {
     provider obj = Provider.of<provider>(context, listen: false);
-    await obj.deleteTask(MoviesList(widget.recommendedMovie?.id.toString()));
+    await obj.deleteTask(MoviesList(id: widget.recommendedMovie?.id.toString()));
   }
 
   void addToFireStore() async {
     provider obj = Provider.of<provider>(context, listen: false);
-    await obj.addTask(MoviesList(widget.recommendedMovie?.id.toString(),
+    await obj.addTask(MoviesList(id: widget.recommendedMovie?.id.toString(),
         is_added: true, name: widget.recommendedMovie?.name));
   }
 
@@ -52,83 +51,72 @@ class _RecommendedMovieWidgetState extends State<RecommendedMovieWidget> {
       children: [
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 4),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 12.0, top: 11.0),
-            child: CachedNetworkImage(
-              height: 137,
-              width: 86,
-              imageUrl:
-                  "https://image.tmdb.org/t/p/w500/${widget.recommendedMovie?.backdropPath}" ??
-                      '',
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  ),
+          child: CachedNetworkImage(
+            height: 19.h,
+            width: 28.w,
+            imageUrl:
+                "https://image.tmdb.org/t/p/w500/${widget.recommendedMovie?.backdropPath}" ??
+                    '',
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
                 ),
               ),
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
+            ),
+            placeholder: (context, url) => Center(
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey,
+                highlightColor: Colors.white,
+                child: Container(
+                  height: 19.h,
+                  width: 28.w,
+                  color: Colors.grey,
+                ),
               ),
-              errorWidget: (context, url, error) => const Center(
-                child: Icon(Icons.error, color: Colors.grey),
-              ),
+            ),
+            errorWidget: (context, url, error) => const Center(
+              child: Icon(Icons.error, color: Colors.grey),
             ),
           ),
         ),
-        movie != null
-            ? movie?.is_added == true
-                ? Padding(
-                    padding: EdgeInsets.zero,
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          deleteFromFireStore();
-                          fetchMovie();
-                          movie = null;
-                          movie?.is_added = false;
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.bookmark_added_rounded,
-                        color: Colors.amber,
-                        size: 24,
-                      ),
-                    ),
-                  )
-                : Padding(
-                    padding: EdgeInsets.zero,
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          addToFireStore();
-                          fetchMovie();
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.bookmark_add_rounded,
-                        color: Colors.white,
-                        size: 24,
-                      ),
-                    ),
-                  )
+        movie?.is_added == true
+            ? Padding(
+                padding: EdgeInsets.zero,
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      deleteFromFireStore();
+                      fetchMovie();
+                      movie = MoviesList(is_added: false);
+                      movie?.is_added = false;
+                    });
+                  },
+                  child: const Icon(
+                    Icons.bookmark_added_rounded,
+                    color: Colors.amber,
+                    size: 24,
+                  ),
+                ),
+              )
             : Padding(
                 padding: EdgeInsets.zero,
-                child: IconButton(
-                  onPressed: () {
+                child: InkWell(
+                  onTap: () {
                     setState(() {
                       addToFireStore();
                       fetchMovie();
+                      movie?.is_added = true;
                     });
                   },
-                  icon: const Icon(
+                  child: const Icon(
                     Icons.bookmark_add_rounded,
                     color: Colors.white,
                     size: 24,
                   ),
                 ),
-              ),
+              )
       ],
     );
   }
